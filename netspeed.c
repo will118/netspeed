@@ -44,6 +44,8 @@ void interface_bytes_transferred(char *interface_name) {
       }
     }
   }
+
+  free(buf);
 }
 
 int main(int argc, char *argv[]) {
