@@ -2,6 +2,7 @@ PREFIX ?= /usr/local
 MODULE = sys/networking
 LUAFILE  = init.lua
 CFILE = internal.c
+CLINAME = netspeed
 HEADERS  =
 
 CFLAGS  += -Wall -Wextra
@@ -14,11 +15,9 @@ all: $(SOFILE)
 
 install: install-library install-lua
 
-build-cli:
-	$(CC) main.c -o netspeed
-
 install-cli:
-	install $(PREFIX)/bin
+	$(CC) main.c -o $(CLINAME)
+	install $(CLINAME) $(PREFIX)/bin
 
 $(SOFILE): $(OFILE) $(HEADERS)
 	$(CC) $(OFILE) $(CFLAGS) $(LDFLAGS) -o $@
