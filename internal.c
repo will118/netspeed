@@ -2,11 +2,16 @@
 #import "netspeed.c"
 
 static int getstats(lua_State* L) {
-    struct interface_stats stats = interface_bytes_transferred("en0"); // TODO
+    const char *interface_name = lua_tostring(L, 1);
+    struct interface_stats stats = interface_bytes_transferred(interface_name);
+    lua_pop(L, 1);
     lua_newtable(L);
-    lua_pushnumber(L, stats.ibytes); lua_setfield(L, -2, "ibytes");
-    lua_pushnumber(L, stats.obytes); lua_setfield(L, -2, "obytes");
-    lua_pushnumber(L, stats.time_usec); lua_setfield(L, -2, "time_usec");
+    lua_pushnumber(L, stats.ibytes);
+    lua_setfield(L, -2, "ibytes");
+    lua_pushnumber(L, stats.obytes);
+    lua_setfield(L, -2, "obytes");
+    lua_pushnumber(L, stats.time_usec);
+    lua_setfield(L, -2, "time_usec");
     return 1;
 }
 

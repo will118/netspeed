@@ -16,7 +16,7 @@ struct interface_stats {
 
 const struct interface_stats default_stats = { 0, 0, 0 };
 
-struct interface_stats interface_bytes_transferred(char *interface_name) {
+struct interface_stats interface_bytes_transferred(const char *interface_name) {
   int mib[] = {
     CTL_NET,
     PF_ROUTE,
