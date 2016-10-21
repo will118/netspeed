@@ -6,7 +6,6 @@ static int getstats(lua_State* L) {
     lua_newtable(L);
     lua_pushnumber(L, stats.ibytes); lua_setfield(L, -2, "ibytes");
     lua_pushnumber(L, stats.obytes); lua_setfield(L, -2, "obytes");
-    lua_pushnumber(L, stats.time_sec); lua_setfield(L, -2, "time_sec");
     lua_pushnumber(L, stats.time_usec); lua_setfield(L, -2, "time_usec");
     return 1;
 }

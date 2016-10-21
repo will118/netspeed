@@ -11,11 +11,10 @@
 struct interface_stats {
    unsigned long long ibytes;
    unsigned long long obytes;
-   unsigned long time_sec;
-   int time_usec;
+   unsigned long long time_usec;
 };
 
-const struct interface_stats default_stats = { 0, 0, 0, 0 };
+const struct interface_stats default_stats = { 0, 0, 0 };
 
 struct interface_stats interface_bytes_transferred(char *interface_name) {
   int mib[] = {
@@ -55,8 +54,7 @@ struct interface_stats interface_bytes_transferred(char *interface_name) {
         if (strncmp(interface_name, sdl->sdl_data, sdl->sdl_nlen) == 0) {
           stats.ibytes = ifd.ifi_ibytes;
           stats.obytes = ifd.ifi_obytes;
-          stats.time_sec = tv.tv_sec;
-          stats.time_usec = tv.tv_usec;
+          stats.time_usec = (1000000 * tv.tv_sec) + tv.tv_usec;
           break;
         }
       }
