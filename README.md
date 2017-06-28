@@ -1,4 +1,4 @@
-##Prints/returns the ibytes/obytes of a network interface with a timestamp.
+## Prints/returns the ibytes/obytes of a network interface with a timestamp.
 
 ### CLI
 `make install-cli`
